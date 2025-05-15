@@ -3,21 +3,14 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     [Header("References")]
-    public Rigidbody rb;
     public Transform graphic;
 
     [Header("Settings")]
     public bool isGlowing = false;
-    public bool isLevitating = false;
-    private Vector3 centerOffset;
 
     private void Start()
     {
-        Renderer renderer = graphic.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            centerOffset = renderer.bounds.center - graphic.transform.position;
-        }
+        
     }
 
     private void Update()

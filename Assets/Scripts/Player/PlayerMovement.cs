@@ -2,15 +2,16 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
     public ObjectOrientation orientation;
     public Rigidbody rb;
-    public CharacterGraphic playerCharacter;
-    public Animator characterAnimator;
-    public ThirdPersonCam camController;
+    public Character playerCharacter;
+    //public Animator characterAnimator;
+    public FirstPersonCam camController;
 
     [Header("Movement")]
     private float moveSpeed = 4.5f;
@@ -45,33 +46,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float currentSpeed;
     [SerializeField] PlayerState state;
 
+    PlayerInputActions actions;
+    InputAction move, jump, run;
+
     public static PlayerMovement instance;
 
     private void Awake()
     {
         instance = this;
+
+        actions = new PlayerInputActions();
+        move = actions.Player.Move;
+        jump = actions.Player.Jump;
+        run = actions.Player.Sprint;
     }
 
-    public void OnMove(InputValue value)
-    {
-        if (!canMove)
-        {
-            rb.linearVelocity = Vector3.zero;
-            return;
-        }
+    private void OnEnable() => actions.Enable();
 
-        moveInputValue = value.Get<Vector2>();
-    }
-
-    public void OnJump(InputValue value)
-    {
-        isJumping = value.Get<float>() == 1;
-    }
-
-    public void OnSprint(InputValue value)
-    {
-        isRunning = value.Get<float>() == 1;
-    }
+    private void OnDisable() => actions.Disable();
 
     private void Start()
     {
@@ -83,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Check if player is grounded
-        isGrounded = Physics.Raycast(rb.transform.position, Vector3.down, playerHeight * 0.5f + groundDistance, whatIsGround) || OnSlope();
+        isGrounded = Physics.Raycast(playerCharacter.transform.position, Vector3.down, playerHeight * 0.5f + groundDistance, whatIsGround) || OnSlope();
 
         Inputs();
         SpeedControl();
@@ -109,9 +101,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Inputs()
     {
-        if (readyToJump && isGrounded && isJumping)
+        if (!canMove)
         {
-            StartCoroutine(Jump());
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        moveInputValue = move.ReadValue<Vector2>();
+        isRunning = run.IsPressed();
+
+        if (readyToJump && isGrounded && jump.WasPressedThisFrame())
+        {
+            Jump();
         }
     }
 
@@ -134,9 +135,8 @@ public class PlayerMovement : MonoBehaviour
             //if (rb.linearVelocity.y > 0.1)
             rb.AddForce(-slopeHit.normal.normalized * 80f, ForceMode.Force);
         }
-
-        if (isGrounded)
-        { 
+        else if (isGrounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
         }
         else
@@ -168,11 +168,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator Jump()
+    void Jump()
     {
         readyToJump = false;
-        if(currentSpeed < 4.6f)
-            yield return new WaitForSeconds(TimeBeforeJumping);
         Invoke(nameof(ResetJump), jumpCooldown);
 
         exitingSlope = true;
@@ -238,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(rb.transform.position, rb.transform.position + Vector3.down * (playerHeight * 0.5f + groundDistance));
+        Gizmos.DrawLine(playerCharacter.transform.position, playerCharacter.transform.position + Vector3.down * (playerHeight * 0.5f + groundDistance));
 
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(rb.transform.position, rb.transform.position + moveDirection);
@@ -246,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(rb.transform.position, rb.transform.position + Vector3.down * (playerHeight * 0.5f + 0.4f));
+        Gizmos.DrawLine(playerCharacter.transform.position, playerCharacter.transform.position + Vector3.down * (playerHeight * 0.5f + 0.4f));
     }
 
     private void OnValidate()
