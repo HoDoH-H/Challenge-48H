@@ -93,7 +93,7 @@ public class AudioManager : MonoBehaviour
     }
 }
 
-public enum AudioId { UIHover, UISelect, Hit, Faint, ExpGain, ItemUse, LevelUp, MinorDiscovery, GreatDiscovery, Pause, UnPause, UIBack, UIDenied, ShopBuy, ShopSell }
+public enum AudioId { UIHover, UISelect, Take, Store }
 
 [Serializable]
 public class AudioData

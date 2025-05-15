@@ -4,6 +4,7 @@ public class InteractableObject : MonoBehaviour
 {
     [Header("References")]
     public Transform graphic;
+    public ObjectBase objectBase;
 
     [Header("Settings")]
     public bool isGlowing = false;

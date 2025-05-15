@@ -79,7 +79,7 @@ public class InteractSystem : MonoBehaviour
                     return;
 
                 // Take Item
-                Debug.Log("Taking item: " + obj.name);
+                Debug.Log("Taking item: " + obj.GetComponent<InteractableObject>()?.objectBase.Name);
             }
         }
     }
