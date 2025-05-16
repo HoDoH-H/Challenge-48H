@@ -79,7 +79,26 @@ public class InteractSystem : MonoBehaviour
                     return;
 
                 // Take Item
-                obj.GetComponent<InteractableObject>().Interact();
+                var iObj = obj.GetComponent<InteractableObject>();
+                if (iObj == null)
+                    return;
+
+                // TODO - Display item in UIs or display choices
+                if (iObj.objectBase.ObjectType == ObjectType.NeedShow)
+                {
+                    // Show item in UI
+                    Debug.Log($"Showing item: {iObj.objectBase.Name}");
+                }
+                else if (iObj.objectBase.ObjectType == ObjectType.NeedChoices)
+                {
+                    // Show choices
+                    Debug.Log($"Showing choices for item: {iObj.objectBase.Name}");
+                }
+                else if (iObj.objectBase.ObjectType == ObjectType.NeedSpecialChoices)
+                {
+                    // Show special choices
+                    Debug.Log($"Showing special choices for item: {iObj.objectBase.Name}");
+                }
             }
         }
     }

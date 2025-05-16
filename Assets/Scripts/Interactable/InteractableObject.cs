@@ -23,13 +23,4 @@ public class InteractableObject : MonoBehaviour
     {
         graphic.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white * intensity);
     }
-
-    public void Interact()
-    {
-        if (objectBase == null)
-            return;
-        objectBase.Interact();
-
-        // TODO - Display item in UIs or display choices
-    }
 }
