@@ -83,6 +83,8 @@ public class InteractSystem : MonoBehaviour
                 if (iObj == null)
                     return;
 
+
+
                 // TODO - Display item in UIs or display choices
                 if (iObj.objectBase.ObjectType == ObjectType.NeedShow)
                 {
@@ -93,6 +95,7 @@ public class InteractSystem : MonoBehaviour
                 {
                     // Show choices
                     Debug.Log($"Showing choices for item: {iObj.objectBase.Name}");
+                    Interaction_choice.Instance.ShowChoices(iObj.objectBase.DreamText, iObj.objectBase.NightmareText);
                 }
                 else if (iObj.objectBase.ObjectType == ObjectType.NeedSpecialChoices)
                 {
