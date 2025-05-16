@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SmallTrain
   m_EditorClassIdentifier: 
   name: Petit Train
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: b3bc11cf12ebbf143913d3292b50f1ae, type: 3}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 0}
   interactionSfx: 2
   objectType: 2
   dreamText: Choice 1

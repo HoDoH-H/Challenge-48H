@@ -15,5 +15,7 @@ MonoBehaviour:
   name: "T\xE9l\xE9phone Cellulaire Portatif"
   dream: 
   nightmare: 
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 1214a03402e576643a0b14af7ba3035f, type: 3}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 8300000, guid: 6e755238936a27f4fb3fa0598479968b, type: 3}
   interactionSfx: 2

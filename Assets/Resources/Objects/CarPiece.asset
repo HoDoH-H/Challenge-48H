@@ -16,4 +16,6 @@ MonoBehaviour:
   dream: 
   nightmare: 
   sfx: {fileID: 0}
+  dreamSfx: {fileID: 8300000, guid: 50cb3e19817222c47a211c88f640f54f, type: 3}
+  nightmareSfx: {fileID: 8300000, guid: d4476f284c47a6546b5fdd083f1b6df6, type: 3}
   interactionSfx: 2

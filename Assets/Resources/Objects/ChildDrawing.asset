@@ -15,5 +15,7 @@ MonoBehaviour:
   name: Dessin D'enfant
   dream: 
   nightmare: 
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: e9c64eec640cc1445b8dd7fd09a6b718, type: 3}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 0}
   interactionSfx: 2

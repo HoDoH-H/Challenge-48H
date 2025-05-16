@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Journal
   sfx: {fileID: 0}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 8300000, guid: 4515154c8345d5c4cb1336b8ae5a8588, type: 3}
   interactionSfx: 2
   objectType: 2
   dreamText: Choice 1
