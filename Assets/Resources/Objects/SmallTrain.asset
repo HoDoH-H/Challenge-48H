@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
+  m_Name: SmallTrain
+  m_EditorClassIdentifier: 
+  name: Petit Train
+  sfx: {fileID: 8300000, guid: b3bc11cf12ebbf143913d3292b50f1ae, type: 3}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 0}
+  interactionSfx: 2
+  objectType: 2
+  dreamText: Choice 1
+  nightmareText: Choice 2
