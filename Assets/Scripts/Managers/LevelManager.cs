@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
     public void ChangeState(int delta)
     {
         stateGame += delta;
-        Debug.Log("State modifié : " + stateGame);
+        print("State modifié : " + stateGame);
     }
 
     void UpdateAmbiance()
@@ -54,11 +54,11 @@ public class LevelManager : MonoBehaviour
 
     void Win()
     {
-        Debug.Log("You Win!");
+        print("You Win!");
     }
 
     void Lose()
     {
-        Debug.Log("You Lose!");
+        print("You Lose!");
     }
 }

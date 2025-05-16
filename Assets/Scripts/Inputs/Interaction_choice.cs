@@ -27,6 +27,8 @@ public class Interaction_choice : MonoBehaviour
     public void ShowChoices(string dreamText, string nightmareText)
     {
         panel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         isChoiceOneDream = Random.value > 0.5f;
 
@@ -56,7 +58,10 @@ public class Interaction_choice : MonoBehaviour
             LevelManager.Instance.ChangeState(-1);
 
         Debug.Log("Choix effectué, nouveau stateGame : " + LevelManager.Instance.stateGame);
-
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
         panel.SetActive(false);
     }
 
