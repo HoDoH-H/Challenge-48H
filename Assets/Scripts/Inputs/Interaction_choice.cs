@@ -63,6 +63,10 @@ public class Interaction_choice : MonoBehaviour
         Cursor.visible = false;
         
         panel.SetActive(false);
+
+        PlayerMovement.instance.canMove = true;
+        FirstPersonCam.instance.canLook = true;
+        GameManager.instance.IncreaseGameStage();
     }
 
 }

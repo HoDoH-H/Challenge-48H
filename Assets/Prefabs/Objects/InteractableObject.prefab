@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphic: {fileID: 3153251308045564973}
+  objectBase: {fileID: 11400000, guid: a8dafbd445d068e4f9ab67ebaa43f705, type: 2}
   isGlowing: 0
 --- !u!1 &2874912219525098427
 GameObject:

@@ -98,6 +98,7 @@ public class InteractSystem : MonoBehaviour
                     Destroy(iObj.gameObject);
                     PlayerMovement.instance.canMove = true;
                     FirstPersonCam.instance.canLook = true;
+                    GameManager.instance.IncreaseGameStage();
                 }
                 else if (iObj.objectBase.ObjectType == ObjectType.NeedShowAndRotation)
                 {
@@ -110,17 +111,17 @@ public class InteractSystem : MonoBehaviour
                     Destroy(iObj.gameObject);
                     PlayerMovement.instance.canMove = true;
                     FirstPersonCam.instance.canLook = true;
+                    GameManager.instance.IncreaseGameStage();
                 }
                 else if (iObj.objectBase.ObjectType == ObjectType.NeedChoices)
                 {
-                    // Show choices
-                    Debug.Log($"Showing choices for item: {iObj.objectBase.Name}");
+                    PlayerMovement.instance.canMove = false;
+                    FirstPersonCam.instance.canLook = false;
                     Interaction_choice.Instance.ShowChoices(iObj.objectBase.DreamText, iObj.objectBase.NightmareText);
                 }
                 else if (iObj.objectBase.ObjectType == ObjectType.NeedSpecialChoices)
                 {
-                    // Show special choices
-                    Debug.Log($"Showing special choices for item: {iObj.objectBase.Name}");
+                    iObj.objectBase.Interact();
                 }
             }
         }
@@ -142,7 +143,7 @@ public class InteractSystem : MonoBehaviour
             float zRotation = 0f;
             while (!escape.WasPerformedThisFrame())
             {
-                Debug.Log($"{yRotation}, {zRotation}, {look.ReadValue<Vector2>().x}, {look.ReadValue<Vector2>().y}");
+                
                 float mouseX = look.ReadValue<Vector2>().x * FirstPersonCam.instance.rotationSpeed.x * Time.deltaTime;
                 float mouseY = look.ReadValue<Vector2>().y * FirstPersonCam.instance.rotationSpeed.y * Time.deltaTime;
                 yRotation -= mouseX;

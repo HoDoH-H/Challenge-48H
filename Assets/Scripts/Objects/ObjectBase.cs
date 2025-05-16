@@ -22,6 +22,7 @@ public class ObjectBase : ScriptableObject
     {
         // Play interaction SFX
         AudioManager.Instance.PlaySFX(interactionSfx, randomPitch: true);
+        GameManager.instance.gotCurrentObject = true;
     }
 
     public void Use()
