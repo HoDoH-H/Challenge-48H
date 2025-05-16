@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
         sfxLookup = sfxList.ToDictionary(x => x.id);
     }
 
-    public IEnumerator PlaySFX(AudioClip clip, bool pauseMusic = false)
+    public IEnumerator PlaySFX(AudioClip clip, bool pauseMusic = false, bool randomPitch = false)
     {
         if (clip == null) yield break;
 
@@ -41,18 +41,21 @@ public class AudioManager : MonoBehaviour
             StartCoroutine(UnPauseMusic(clip.length));
         }
 
+        Debug.Log($"Playing SFX: {clip.name}");
+
         var sfxPlayer = Instantiate(sfxPlayerPrefab, PlayerMovement.instance.playerCharacter.transform.position, new Quaternion(), PlayerMovement.instance.playerCharacter.transform);
+        sfxPlayer.pitch = randomPitch ? UnityEngine.Random.Range(0.65f, 1.35f) : 1f;
         sfxPlayer.PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length + .5f);
         Destroy(sfxPlayer.gameObject);
     }
 
-    public void PlaySFX(AudioId audioId, bool pauseMusic = false)
+    public void PlaySFX(AudioId audioId, bool pauseMusic = false, bool randomPitch = false)
     {
         if (!sfxLookup.ContainsKey(audioId)) return;
 
         var audioData = sfxLookup[audioId];
-        StartCoroutine(PlaySFX(audioData.clip, pauseMusic));
+        StartCoroutine(PlaySFX(audioData.clip, pauseMusic, randomPitch));
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true, bool fade = false)
@@ -93,7 +96,7 @@ public class AudioManager : MonoBehaviour
     }
 }
 
-public enum AudioId { UIHover, UISelect, Take, Store }
+public enum AudioId { UIHover, UISelect, Take }
 
 [Serializable]
 public class AudioData

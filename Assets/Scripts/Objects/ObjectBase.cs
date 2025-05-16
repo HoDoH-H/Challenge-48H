@@ -14,8 +14,6 @@ public class ObjectBase : ScriptableObject
     public void Interact()
     {
         // Play interaction SFX
-        AudioManager.Instance.PlaySFX(interactionSfx);
-
-        // TODO - Show item in UI (Ui where player can rotate and inspect the item)
+        AudioManager.Instance.PlaySFX(interactionSfx, randomPitch: true);
     }
 }
