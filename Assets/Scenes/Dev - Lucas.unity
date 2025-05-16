@@ -227,6 +227,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.02}
+--- !u!4 &104067818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3153251308045564973, guid: b15a154150bd091458fdcf168d8b742f, type: 3}
+  m_PrefabInstance: {fileID: 8138112201196441375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &209135610 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 9082499952890761668, guid: 28bb682359ee0fc44b867e2c98fab9bf, type: 3}
@@ -456,9 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateGame: 0
   gameEnd: 0
-  intenseColor: {r: 1, g: 0, b: 0, a: 1}
-  calmColor: {r: 0, g: 0, b: 1, a: 1}
-  ambianceLight: {fileID: 1576515502}
+  timer: 200
 --- !u!4 &669101908
 Transform:
   m_ObjectHideFlags: 0
@@ -873,9 +876,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5290875450616484263, guid: b15a154150bd091458fdcf168d8b742f, type: 3}
+      propertyPath: graphic
+      value: 
+      objectReference: {fileID: 104067818}
+    - target: {fileID: 5290875450616484263, guid: b15a154150bd091458fdcf168d8b742f, type: 3}
       propertyPath: objectBase
       value: 
-      objectReference: {fileID: 11400000, guid: 76f16860a48db854cac35e62c9197052, type: 2}
+      objectReference: {fileID: 11400000, guid: 330f0e9e9c46e41408ba1d426b5b604d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

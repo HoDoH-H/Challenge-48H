@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
                 Lose();
         }
     }
-    
+
     public void ChangeState(int delta)
     {
         stateGame += delta;
@@ -37,12 +37,13 @@ public class LevelManager : MonoBehaviour
     {
         if (stateGame > 0)
         {
-            
+
         }
         else if (stateGame < 0)
         {
-            
-        }}
+
+        }
+    }
 
     public void SetGameEnd()
     {
