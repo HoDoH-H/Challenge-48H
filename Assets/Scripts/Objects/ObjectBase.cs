@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CreateObject/NewObject")]
@@ -6,7 +7,7 @@ public class ObjectBase : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private AudioClip sfx;
     [SerializeField] private AudioId interactionSfx;
-    [SerializeField] private ObjectType objectType = ObjectType.None;
+    [SerializeField] private ObjectType objectType = ObjectType.JustShow;
     [SerializeField] private string dreamText;
     [SerializeField] private string nightmareText;
 
@@ -24,4 +25,4 @@ public class ObjectBase : ScriptableObject
     }
 }
 
-public enum ObjectType { None, NeedShow, NeedChoices, NeedSpecialChoices}
+public enum ObjectType { JustShow, NeedShowAndRotation, NeedChoices, NeedSpecialChoices}

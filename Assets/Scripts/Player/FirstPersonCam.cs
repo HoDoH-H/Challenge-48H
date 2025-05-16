@@ -17,6 +17,7 @@ public class FirstPersonCam : MonoBehaviour
     private Vector2 moveInputValue;
 
     public Vector2 rotationSpeed = new Vector2(7f, 7f);
+    public bool canLook = true;
     private bool isGamePaused;
     private GameObject currentObject;
 
@@ -56,15 +57,25 @@ public class FirstPersonCam : MonoBehaviour
 
     private void Update()
     {
-        float mouseX = look.ReadValue<Vector2>().x * rotationSpeed.x * Time.deltaTime;
-        float mouseY = look.ReadValue<Vector2>().y * rotationSpeed.y * Time.deltaTime;
-        xRotation -= mouseY;
-        yRotation += mouseX;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
+        if (canLook)
+        {
+            float mouseX = look.ReadValue<Vector2>().x * rotationSpeed.x * Time.deltaTime;
+            float mouseY = look.ReadValue<Vector2>().y * rotationSpeed.y * Time.deltaTime;
+            xRotation -= mouseY;
+            yRotation += mouseX;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
 
-        MakeItemGlowOnSight();
+            MakeItemGlowOnSight();
+        }
+        else
+        {
+            if (currentObject != null)
+                if (currentObject.transform.GetComponentInParent<InteractableObject>() != null)
+                    currentObject.transform.GetComponentInParent<InteractableObject>().isGlowing = false;
+            currentObject = null;
+        }
     }
 
     void MakeItemGlowOnSight()

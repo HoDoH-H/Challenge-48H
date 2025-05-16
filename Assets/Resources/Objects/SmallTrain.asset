@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Petit Train
   sfx: {fileID: 0}
   interactionSfx: 2
-  objectType: 2
+  objectType: 0
   dreamText: Choice 1
   nightmareText: Choice 2

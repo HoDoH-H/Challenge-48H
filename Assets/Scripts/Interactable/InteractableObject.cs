@@ -16,7 +16,8 @@ public class InteractableObject : MonoBehaviour
 
     private void Update()
     {
-        SetGlowing(isGlowing ? 4 : 1);
+        if(graphic != null)
+            SetGlowing(isGlowing ? 4 : 1);
     }
 
     public void SetGlowing(float intensity = 0)

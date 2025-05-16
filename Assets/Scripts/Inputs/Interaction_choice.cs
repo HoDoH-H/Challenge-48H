@@ -7,8 +7,8 @@ public class Interaction_choice : MonoBehaviour
     public static Interaction_choice Instance;
     
     public GameObject panel;
-    public TextMeshPro choiceOneText;
-    public TextMeshPro choiceTwoText;
+    public TextMeshProUGUI choiceOneText;
+    public TextMeshProUGUI choiceTwoText;
     public Button choiceOneButton;
     public Button choiceTwoButton;
 

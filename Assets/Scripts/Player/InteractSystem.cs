@@ -7,6 +7,7 @@ public class InteractSystem : MonoBehaviour
 {
     [Header("References")]
     public FirstPersonCam cam;
+    public CloseDisplayTarget closeDisplayTarget;
 
     [Header("Settings")]
     public LayerMask interactableLayer;
@@ -19,7 +20,7 @@ public class InteractSystem : MonoBehaviour
     public static InteractSystem instance;
 
     PlayerInputActions actions;
-    InputAction interact;
+    InputAction interact, escape, look;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class InteractSystem : MonoBehaviour
 
         actions = new PlayerInputActions();
         interact = actions.Player.Interact;
+        escape = actions.Player.Escape;
+        look = actions.Player.Look;
     }
 
     private void OnEnable() => actions.Enable();
@@ -63,33 +66,50 @@ public class InteractSystem : MonoBehaviour
 
     private void Update()
     {
-        Interact();
+        StartCoroutine(Interact());
     }
 
-    void Interact()
+    IEnumerator Interact()
     {
         if (interact.WasPressedThisFrame())
         {
-            Debug.Log("Interact pressed");
             if (currentObject == null)
             {
                 // Check if looking at a levitatable object
                 GameObject obj = cam.CheckIfLookingAtALayer(interactableLayer);
                 if (obj == null)
-                    return;
+                    yield break;
 
                 // Take Item
                 var iObj = obj.GetComponent<InteractableObject>();
                 if (iObj == null)
-                    return;
+                    yield break;
 
 
 
-                // TODO - Display item in UIs or display choices
-                if (iObj.objectBase.ObjectType == ObjectType.NeedShow)
+                if (iObj.objectBase.ObjectType == ObjectType.JustShow)
                 {
                     // Show item in UI
-                    Debug.Log($"Showing item: {iObj.objectBase.Name}");
+                    PlayerMovement.instance.canMove = false;
+                    FirstPersonCam.instance.canLook = false;
+                    iObj.GetComponent<BoxCollider>().enabled = false;
+                    iObj.gameObject.SetActive(false);
+                    yield return DisplayObjectClosely(iObj.gameObject);
+                    Destroy(iObj.gameObject);
+                    PlayerMovement.instance.canMove = true;
+                    FirstPersonCam.instance.canLook = true;
+                }
+                else if (iObj.objectBase.ObjectType == ObjectType.NeedShowAndRotation)
+                {
+                    // Show item in UI
+                    PlayerMovement.instance.canMove = false;
+                    FirstPersonCam.instance.canLook = false;
+                    iObj.GetComponent<BoxCollider>().enabled = false;
+                    iObj.gameObject.SetActive(false);
+                    yield return DisplayObjectClosely(iObj.gameObject, needRotation: true);
+                    Destroy(iObj.gameObject);
+                    PlayerMovement.instance.canMove = true;
+                    FirstPersonCam.instance.canLook = true;
                 }
                 else if (iObj.objectBase.ObjectType == ObjectType.NeedChoices)
                 {
@@ -104,5 +124,34 @@ public class InteractSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator DisplayObjectClosely(GameObject obj, bool needRotation = false)
+    {
+        var iObj = Instantiate(obj, closeDisplayTarget.transform.position, Quaternion.identity, closeDisplayTarget.transform);
+        Destroy(iObj.transform.GetChild(0).gameObject);
+        iObj.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        iObj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        iObj.SetActive(true);
+
+        if(!needRotation)
+            yield return new WaitUntil(() => escape.WasPerformedThisFrame());
+        else
+        {
+            float yRotation = 90f;
+            float zRotation = 0f;
+            while (!escape.WasPerformedThisFrame())
+            {
+                Debug.Log($"{yRotation}, {zRotation}, {look.ReadValue<Vector2>().x}, {look.ReadValue<Vector2>().y}");
+                float mouseX = look.ReadValue<Vector2>().x * FirstPersonCam.instance.rotationSpeed.x * Time.deltaTime;
+                float mouseY = look.ReadValue<Vector2>().y * FirstPersonCam.instance.rotationSpeed.y * Time.deltaTime;
+                yRotation -= mouseX;
+                zRotation += mouseY;
+                iObj.transform.localRotation = Quaternion.Euler(0, yRotation, zRotation);
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        Destroy(iObj);
     }
 }
