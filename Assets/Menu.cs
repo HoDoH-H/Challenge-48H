@@ -36,8 +36,8 @@ public class Menu : MonoBehaviour
     
     public void ReTry()
     {
-        SceneManager.LoadScene("test");
-        LevelManager.stateGame = 0;
+        SceneManager.LoadScene("Dev-Axel");
+        LevelManager.Instance.stateGame = 0;
     }
     
     public void HandleExitGame()
