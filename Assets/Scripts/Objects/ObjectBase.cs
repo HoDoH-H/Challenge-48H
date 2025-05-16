@@ -23,6 +23,11 @@ public class ObjectBase : ScriptableObject
         // Play interaction SFX
         AudioManager.Instance.PlaySFX(interactionSfx, randomPitch: true);
     }
+
+    public void Use()
+    {
+
+    }
 }
 
 public enum ObjectType { JustShow, NeedShowAndRotation, NeedChoices, NeedSpecialChoices}

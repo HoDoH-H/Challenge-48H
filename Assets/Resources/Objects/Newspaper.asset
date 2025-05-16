@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
-  m_Name: SmallTrain
+  m_Name: Newspaper
   m_EditorClassIdentifier: 
-  name: Petit Train
+  name: Journal
   sfx: {fileID: 0}
   interactionSfx: 2
   objectType: 2

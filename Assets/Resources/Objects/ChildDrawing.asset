@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
-  m_Name: SmallTrain
+  m_Script: {fileID: 11500000, guid: 7efaa7f600cfe2144a37de5c49955837, type: 3}
+  m_Name: ChildDrawing
   m_EditorClassIdentifier: 
-  name: Petit Train
+  name: Dessin D'enfant
+  dream: 
+  nightmare: 
   sfx: {fileID: 0}
   interactionSfx: 2
-  objectType: 2
-  dreamText: Choice 1
-  nightmareText: Choice 2
