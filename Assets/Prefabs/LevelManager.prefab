@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8777901153309472307}
   - component: {fileID: 3424636937895766951}
+  - component: {fileID: 447759564593329211}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -46,6 +47,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateGame: 0
   gameEnd: 0
-  intenseColor: {r: 1, g: 0, b: 0, a: 1}
-  calmColor: {r: 0, g: 0, b: 1, a: 1}
-  ambianceLight: {fileID: 0}
+--- !u!114 &447759564593329211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520677387234397333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f669eadb1ffca43a018df2e0529106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 0}
