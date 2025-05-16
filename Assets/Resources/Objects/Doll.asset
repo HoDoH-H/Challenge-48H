@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "Poup\xE9e"
   sfx: {fileID: 0}
+  dreamSfx: {fileID: 8300000, guid: 45f2c7a18ab16c4468658864f96ae44d, type: 3}
+  nightmareSfx: {fileID: 8300000, guid: c9e25b7013873544b8f2ec45534ed51c, type: 3}
   interactionSfx: 2
   objectType: 2
   dreamText: Choice 1

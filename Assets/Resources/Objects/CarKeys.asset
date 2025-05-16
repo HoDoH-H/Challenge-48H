@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: CarKeys
   m_EditorClassIdentifier: 
   name: "Cl\xE9 de voiture"
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 2563ab8bf09bde242b8b94a95cc0f539, type: 3}
+  dreamSfx: {fileID: 8300000, guid: 2f76a6cd58084c0478ab79272c389112, type: 3}
+  nightmareSfx: {fileID: 0}
   interactionSfx: 2
   objectType: 2
   dreamText: Choice 1

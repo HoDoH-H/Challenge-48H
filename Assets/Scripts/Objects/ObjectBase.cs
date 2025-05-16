@@ -6,6 +6,8 @@ public class ObjectBase : ScriptableObject
 {
     [SerializeField] private string name;
     [SerializeField] private AudioClip sfx;
+    [SerializeField] private AudioClip dreamSfx;
+    [SerializeField] private AudioClip nightmareSfx;
     [SerializeField] private AudioId interactionSfx;
     [SerializeField] private ObjectType objectType = ObjectType.JustShow;
     [SerializeField] private string dreamText;
@@ -13,6 +15,8 @@ public class ObjectBase : ScriptableObject
 
     public string Name => name;
     public AudioClip Sfx => sfx;
+    public AudioClip DreamSfx => dreamSfx;
+    public AudioClip NightmareSfx => nightmareSfx;
     public AudioId InteractionSfx => interactionSfx;
     public ObjectType ObjectType => objectType;
     public string DreamText => dreamText;

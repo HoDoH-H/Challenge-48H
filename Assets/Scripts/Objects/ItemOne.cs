@@ -7,6 +7,10 @@ public class ItemOne : ScriptableObject
     [SerializeField] private string dream;
     [SerializeField] private string nightmare;
     [SerializeField] private AudioClip sfx;
+    [SerializeField] private AudioClip dreamSfx;
+    [SerializeField] private AudioClip nightmareSfx;
+
+
     [SerializeField] private AudioId interactionSfx;
 
     public string Name => name;
@@ -14,6 +18,8 @@ public class ItemOne : ScriptableObject
     public string Nightmare => nightmare;
 
     public AudioClip Sfx => sfx;
+    public AudioClip DreamSfx => dreamSfx;
+    public AudioClip NightmareSfx => nightmareSfx;
     
     
 }

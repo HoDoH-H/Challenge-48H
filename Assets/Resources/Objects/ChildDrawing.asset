@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
+  m_Script: {fileID: 11500000, guid: 7efaa7f600cfe2144a37de5c49955837, type: 3}
   m_Name: ChildDrawing
   m_EditorClassIdentifier: 
   name: Dessin D'enfant
-  sfx: {fileID: 0}
+  dream: 
+  nightmare: 
+  sfx: {fileID: 8300000, guid: e9c64eec640cc1445b8dd7fd09a6b718, type: 3}
+  dreamSfx: {fileID: 0}
+  nightmareSfx: {fileID: 0}
   interactionSfx: 2
-  objectType: 1
-  dreamText: 
-  nightmareText: 
