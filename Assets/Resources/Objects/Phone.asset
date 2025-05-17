@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efaa7f600cfe2144a37de5c49955837, type: 3}
+  m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
   m_Name: Phone
   m_EditorClassIdentifier: 
   name: "T\xE9l\xE9phone Cellulaire Portatif"
-  dream: 
-  nightmare: 
   sfx: {fileID: 8300000, guid: 1214a03402e576643a0b14af7ba3035f, type: 3}
   dreamSfx: {fileID: 8300000, guid: f0573688a4249bd4e897f469ba7a972a, type: 3}
   nightmareSfx: {fileID: 8300000, guid: 6e755238936a27f4fb3fa0598479968b, type: 3}
   interactionSfx: 2
+  objectType: 5
+  dreamText: 
+  nightmareText: 

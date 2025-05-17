@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CarPieceNightmare : MonoBehaviour
+public class DollFireChoice : MonoBehaviour
 {
     private bool canInteract = false;
 
@@ -23,9 +23,9 @@ public class CarPieceNightmare : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Check if the game stage is greater than or equal to CP_GSMin
-            if (GameManager.instance.gameStage == GameManager.instance.CP_GSMin)
+            if (GameManager.instance.gameStage == GameManager.instance.D_GSMin)
             {
-                Debug.Log("test");
+                Debug.Log("CanInteract");
                 canInteract = true;
             }
         }

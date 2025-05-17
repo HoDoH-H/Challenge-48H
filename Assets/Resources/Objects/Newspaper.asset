@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Journal
   sfx: {fileID: 8300000, guid: dacada5af0a2a3c4db7f20d489d4ed8a, type: 3}
-  dreamSfx: {fileID: 0}
+  dreamSfx: {fileID: 8300000, guid: 5a0d08418b206d24e9fdba16312ed0c4, type: 3}
   nightmareSfx: {fileID: 8300000, guid: 4515154c8345d5c4cb1336b8ae5a8588, type: 3}
   interactionSfx: 2
-  objectType: 2
-  dreamText: Choice 1
-  nightmareText: Choice 2
+  objectType: 3
+  dreamText: Prendre le journal
+  nightmareText: "D\xE9chirer le journal"

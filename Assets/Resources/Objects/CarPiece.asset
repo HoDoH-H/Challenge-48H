@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efaa7f600cfe2144a37de5c49955837, type: 3}
+  m_Script: {fileID: 11500000, guid: ded9290b337892e4a8d648b71ebc7706, type: 3}
   m_Name: CarPiece
   m_EditorClassIdentifier: 
   name: Coffre de voiture
-  dream: 
-  nightmare: 
   sfx: {fileID: 0}
   dreamSfx: {fileID: 8300000, guid: 50cb3e19817222c47a211c88f640f54f, type: 3}
   nightmareSfx: {fileID: 8300000, guid: d4476f284c47a6546b5fdd083f1b6df6, type: 3}
   interactionSfx: 2
+  objectType: 4
+  dreamText: 
+  nightmareText: 

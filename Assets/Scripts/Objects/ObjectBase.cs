@@ -9,7 +9,7 @@ public class ObjectBase : ScriptableObject
     [SerializeField] private AudioClip dreamSfx;
     [SerializeField] private AudioClip nightmareSfx;
     [SerializeField] private AudioId interactionSfx;
-    [SerializeField] private ObjectType objectType = ObjectType.JustShow;
+    [SerializeField] private ObjectType objectType;
     [SerializeField] private string dreamText;
     [SerializeField] private string nightmareText;
 
@@ -35,4 +35,4 @@ public class ObjectBase : ScriptableObject
     }
 }
 
-public enum ObjectType { JustShow, NeedShowAndRotation, NeedChoices, NeedSpecialChoices}
+public enum ObjectType { LittleTrain, ChildDrawing, CarPiece, NewsPaper, Doll, Phone, Key}

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryAction",
+                    "type": "Button",
+                    "id": "a49cd15f-9b95-48c8-86f2-717985c518fd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -353,6 +362,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7fa1f15c-0997-4176-9f58-4badabd9bddf",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SecondaryAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

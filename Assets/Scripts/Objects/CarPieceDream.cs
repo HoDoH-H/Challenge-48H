@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CarPieceNightmare : MonoBehaviour
+public class CarPieceDream : MonoBehaviour
 {
+    public CarInstance car;
+
     private bool canInteract = false;
 
     PlayerInputActions actions;
@@ -25,7 +27,6 @@ public class CarPieceNightmare : MonoBehaviour
             // Check if the game stage is greater than or equal to CP_GSMin
             if (GameManager.instance.gameStage == GameManager.instance.CP_GSMin)
             {
-                Debug.Log("test");
                 canInteract = true;
             }
         }
@@ -47,10 +48,11 @@ public class CarPieceNightmare : MonoBehaviour
                 return;
 
 
-            StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.NightmareSfx));
+            StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.DreamSfx));
+            car.RepairCar();
             InteractSystem.instance.currentObject = null;
 
-            LevelManager.Instance.ChangeState(-1);
+            LevelManager.Instance.ChangeState(1);
             GameManager.instance.IncreaseGameStage();
         }
     }

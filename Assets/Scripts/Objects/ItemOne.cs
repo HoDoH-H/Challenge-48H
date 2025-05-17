@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CreateObject/NewObject")]
+
 public class ItemOne : ScriptableObject
 {
     [SerializeField] private string name;

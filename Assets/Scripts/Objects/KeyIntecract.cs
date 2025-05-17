@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CarPieceNightmare : MonoBehaviour
+public class KeyIntecract : MonoBehaviour
 {
     private bool canInteract = false;
 
@@ -23,9 +24,9 @@ public class CarPieceNightmare : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Check if the game stage is greater than or equal to CP_GSMin
-            if (GameManager.instance.gameStage == GameManager.instance.CP_GSMin)
+            if (GameManager.instance.gameStage == GameManager.instance.K_GSMin)
             {
-                Debug.Log("test");
+                Debug.Log("CanInteract");
                 canInteract = true;
             }
         }
@@ -46,12 +47,18 @@ public class CarPieceNightmare : MonoBehaviour
             if (!canInteract || !GameManager.instance.gotCurrentObject)
                 return;
 
-
-            StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.NightmareSfx));
-            InteractSystem.instance.currentObject = null;
-
-            LevelManager.Instance.ChangeState(-1);
-            GameManager.instance.IncreaseGameStage();
+            StartCoroutine(OpenDoor());
         }
+    }
+
+    IEnumerator OpenDoor()
+    {
+        GameManager.instance.IncreaseGameStage();
+        StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.DreamSfx));
+        InteractSystem.instance.currentObject = null;
+
+        yield return new WaitForSeconds(1);
+
+        CarInstance.instance.OpenDoor();
     }
 }

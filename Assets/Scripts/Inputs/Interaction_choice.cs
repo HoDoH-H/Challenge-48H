@@ -53,9 +53,15 @@ public class Interaction_choice : MonoBehaviour
     void OnChoiceMade(bool choseDream)
     {
         if (choseDream)
+        { 
             LevelManager.Instance.ChangeState(1);
+            StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.DreamSfx));
+        }
         else
+        {
             LevelManager.Instance.ChangeState(-1);
+            StartCoroutine(AudioManager.Instance.PlaySFX(InteractSystem.instance.currentObject.objectBase.NightmareSfx));
+        }
 
         Debug.Log("Choix effectué, nouveau stateGame : " + LevelManager.Instance.stateGame);
         
@@ -64,9 +70,12 @@ public class Interaction_choice : MonoBehaviour
         
         panel.SetActive(false);
 
+        Destroy(InteractSystem.instance.currentObject.gameObject);
+        InteractSystem.instance.currentObject = null;
+
+
         PlayerMovement.instance.canMove = true;
         FirstPersonCam.instance.canLook = true;
-        GameManager.instance.IncreaseGameStage();
     }
 
 }

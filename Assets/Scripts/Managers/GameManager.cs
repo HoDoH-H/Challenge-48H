@@ -1,52 +1,42 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Child Drawing Properties")]
     public GameObject childDrawingPrefab;
-    public Vector3 childDrawingPosition;
-    public Vector3 childDrawingRotation;
-    public Vector3 childDrawingScale;
     public int CD_GSMin = 0;
 
     [Header("Small Train Properties")]
     public GameObject smallTrainPrefab;
-    public Vector3 smallTrainPosition;
-    public Vector3 smallTrainRotation;
-    public Vector3 smallTrainScale;
     public int ST_GSMin = 0;
 
     [Header("CarPiece Properties")]
     public GameObject carPiecePrefab;
-    public Vector3 carPiecePosition;
-    public Vector3 carPieceRotation;
-    public Vector3 carPieceScale;
     public int CP_GSMin = 2;
 
     [Header("Newspaper Properties")]
     public GameObject newspaperPrefab;
-    public Vector3 newspaperPosition;
-    public Vector3 newspaperRotation;
-    public Vector3 newspaperScale;
     public int N_GSMin = 3;
+
+    [Header("Car Key Properties")]
+    public GameObject keyPrefab;
+    public int K_GSMin = 4;
 
     [Header("Doll Properties")]
     public GameObject dollPrefab;
-    public Vector3 dollPosition;
-    public Vector3 dollRotation;
-    public Vector3 dollScale;
-    public int D_GSMin = 4;
+    public int D_GSMin = 5;
 
     [Header("Phone Properties")]
-    public GameObject phonePrefab;
-    public Vector3 phonePosition;
-    public Vector3 phoneRotation;
-    public Vector3 phoneScale;
-    public int P_GSMin = 5;
+    public GameObject[] phonePrefab;
+    public int P_GSMin = 6;
 
     public static GameManager instance;
     public int gameStage = 0;
     public bool gotCurrentObject = false;
+    public bool canPause = true;
+
+    private GameObject[] instantiatedObjects;
 
     private void Awake()
     {
@@ -54,6 +44,15 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        smallTrainPrefab.SetActive(false);
+        childDrawingPrefab.SetActive(false);
+        carPiecePrefab.SetActive(false);
+        newspaperPrefab.SetActive(false);
+        keyPrefab.SetActive(false);
+        dollPrefab.SetActive(false);
+        phonePrefab[0].SetActive(false);
+        phonePrefab[1].SetActive(false);
+
         UpdateGameStage();
     }
 
@@ -62,29 +61,41 @@ public class GameManager : MonoBehaviour
         gotCurrentObject = false;
         if (gameStage == 0)
         {
-            Instantiate(smallTrainPrefab, smallTrainRotation, Quaternion.Euler(smallTrainRotation));
-            Instantiate(childDrawingPrefab, childDrawingPosition, Quaternion.Euler(childDrawingRotation));
+            smallTrainPrefab.SetActive(true);
+            childDrawingPrefab.SetActive(true);
         }
         else if (gameStage == 2)
         {
-            Instantiate(carPiecePrefab, carPiecePosition, Quaternion.Euler(carPieceRotation));
+            carPiecePrefab.SetActive(true);
         }
         else if (gameStage == 3)
         {
-            Instantiate(Resources.Load("Newspaper"), newspaperPosition, Quaternion.Euler(newspaperRotation));
+            newspaperPrefab.SetActive(true);
         }
         else if (gameStage == 4)
         {
-            Instantiate(Resources.Load("Doll"), dollPosition, Quaternion.Euler(dollRotation));
+            keyPrefab.SetActive(true);
         }
         else if (gameStage == 5)
         {
-            Instantiate(Resources.Load("Phone"), phonePosition, Quaternion.Euler(phoneRotation));
+            dollPrefab.SetActive(true);
+            dollPrefab.GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(WaitToEnableDoll());
+        }
+        else if (gameStage == 6)
+        {
+            phonePrefab[LevelManager.Instance.stateGame > 0 ? 0 : 1].SetActive(true);
         }
         else
         {
             Debug.LogWarning("No object to spawn for game stage: " + gameStage);
         }
+    }
+
+    IEnumerator WaitToEnableDoll()
+    {
+        yield return new WaitForSeconds(0.7f);
+        dollPrefab.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void IncreaseGameStage()
